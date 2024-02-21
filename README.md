@@ -9,7 +9,7 @@ I found some online solutions for tracking which stations require specific resou
 
 First, the app retrieves the necessary knowledge required from the EFT API (if there is no data available yet). The data is then saved locally in the localStorage using a new data structure.
 
-And that's it for starters! All you need to do now is add your resources for the station you want to upgrade/keep track of first. The app will check for each input change if the required resources are met. If they are, the upgrade button becomes available, and after you click it, the next level will appear. Once the last level has been upgraded, the station will disappear.
+And that's it for starters! All you need to do now is add your resources for the station you want to upgrade/keep track of. The app will check on each input change if the required resources are met. If they are, the upgrade button becomes available, and after you click it, the next level will appear. Once the last level has been upgraded, the station will disappear.
 
 > [!NOTE]
 > I have not taken into consideration what station is unlocked based on the current level of each station. So they are all available.

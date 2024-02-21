@@ -76,8 +76,6 @@ const HideoutTracker: FunctionComponent = () => {
     for (const station of hideoutStations) {
       const result = station.levels.find((level) => level.id === stationLevelId);
       if (result) {
-        console.log("result", result);
-
         return result;
       }
     }

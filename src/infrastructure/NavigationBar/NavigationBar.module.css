@@ -1,0 +1,12 @@
+.navigation-bar {
+    display: flex;
+    width: 100%;
+    height: 56px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    background-color: #111314;
+    border-bottom: solid 1px #d9d9d9;
+    font-family: "BenderBold", sans-serif;
+}

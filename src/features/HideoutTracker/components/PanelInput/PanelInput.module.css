@@ -1,0 +1,31 @@
+.panel-input-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.panel-input_edit-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    width: 40%;
+}
+
+
+.panel-input_input {
+    background: #fff;
+    border: #928060 solid 1px;
+    border-bottom: 1px solid rgb(143, 143, 143);
+    border-radius: 4px;
+    margin: 0 4px;
+    width: 30px;
+    height: 15px;
+    color: #000;
+    outline: none;
+}
+
+
+.panel-input_roubles {
+    width: 55px;
+}

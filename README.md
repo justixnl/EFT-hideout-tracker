@@ -25,7 +25,5 @@ All you need to do now is add your resources for the module you want to upgrade/
 - [ ] Check to see where stuff needs to be reworked
   - [ ] Rework if necessary
 
-[^1]: *Currently there is a problem with Stash and Defective Wall not having any requirements.*
-*Apparently the Stash has non on level 1 so I need to think up a solution on skipping the first level.*
-*The Defective Wall on the other hand does have a first level requirement from what I've seen ingame. So I will need to debug whats happening here in the data from the API.*
+[^1]: *Currently there is a problem with Stash and Defective Wall not having any requirements. Apparently the Stash has none on level 1 so I need to come up with a solution on skipping the first level. The Defective Wall on the other hand does have a first level requirement from what I've seen ingame. So I will need to debug what's happening here in the data from the API.*
 [^2]: See warning above

@@ -15,7 +15,7 @@ And that's it for starters! All you need to do now is add your resources for the
 > If you decide to use my app and need to reset your data at any point, you will have to clear your localStorage through the developer's tools.
 
 > [!NOTE]
-> I have not taken into consideration what station is unlocked based on the current level of each station. So they are all available.
+> I have not taken into consideration what station is unlocked based on the current level of the other stations. So they are all available.
 
 ## TODO list
 

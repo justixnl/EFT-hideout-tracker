@@ -1,15 +1,13 @@
 # EFT Hideout Tracker
 
-My private Hideout Tracker for the game [Escape from Tarkov](https://www.escapefromtarkov.com/). 
-
-
+My private Hideout Tracker for the game [Escape from Tarkov](https://www.escapefromtarkov.com/).
 
 ## Description
-I found some online solutions for tracking which stations require specific resources, but they didn't fit my use case, so I decided to create my own. It looks and functions quite simply.
+I found some online solutions for tracking which stations require specific resources, but they didn't fit my usecase, so I decided to create my own. It looks and functions quite simply.
 
-First, the app retrieves the necessary knowledge required from the [EFT API](https://tarkov.dev/api/) (if there is no data available yet). The data is then saved locally in the localStorage using a new data structure.
+For starters, the app retrieves the necessary knowledge required from the [EFT API](https://tarkov.dev/api/) (if there is no data available yet). The data is then saved locally in the localStorage using a new data structure.
 
-And that's it for starters! All you need to do now is add your resources for the station you want to upgrade/keep track of. The app will check on each input change if the required resources are met. If they are, the upgrade button becomes available, and after you click it, the next level will appear. Once the last level has been upgraded, the station will disappear.
+All you need to do now is add your resources for the station you want to upgrade/keep track of. The app will check on each input change if the required resources are met. If they are, the upgrade button becomes available, and after you click it, the next level will appear. Once the last level has been upgraded, the station will disappear.
 
 > [!WARNING]
 > If you decide to use my app and need to reset your data at any point, you will have to clear your localStorage through the developer's tools.

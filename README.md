@@ -22,7 +22,7 @@ All you need to do now is add your resources for the module you want to upgrade/
 - [x] Add button for reset of data (For when new wipes occurs)
   - [ ] Rework functionality
 - [x] Add **max out resources** functionality + button
-  - [ ] Not working properly with onInputChangeDebounced. This needs a fix. [^2]
+  - [x] Not working properly with onInputChangeDebounced. This needs a fix. [^2]
 - [ ] Check to see where stuff needs to be reworked
   - [ ] Rework if necessary
 

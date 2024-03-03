@@ -4,7 +4,7 @@ My private Hideout Tracker for the game [Escape from Tarkov](https://www.escapef
 
 ## Description
 
-I found some online solutions for tracking which module require specific resources, but they didn't fit my usecase, so I decided to create my own. Its easy to use and simple in design.
+I found some online solutions for tracking which module require specific resources, but they didn't fit my usecase, so I decided to create my own webapplication. Its easy to use and simple in design.
 
 For starters, the app retrieves the necessary knowledge required from the [EFT API](https://tarkov.dev/api/) (if there is no data available yet). The data is then saved locally in the localStorage using a new data structure.
 

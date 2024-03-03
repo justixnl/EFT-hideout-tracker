@@ -2,12 +2,12 @@ import classNames from "classnames";
 import { ChangeEvent, FunctionComponent, useCallback, useState } from "react";
 import styles from "./PanelInput.module.css";
 import { ItemRequirements, Levels } from "../../../../utils/newHideout";
+import { debounce } from "../../../../utils/debounce";
 
-// TODO: Use the correct interfaces
 interface PanelInputProps {
   itemReq: ItemRequirements;
   stationLevel: Levels;
-  onInputChangeDebounced: (name: string, value: string, id: string) => void;
+  onInputChange: (name: string, value: string, id: string) => void;
 }
 
 /**
@@ -17,21 +17,26 @@ interface PanelInputProps {
  * @param onInputChangeDebounced updates the state
  * @returns
  */
-const PanelInput: FunctionComponent<PanelInputProps> = ({ itemReq, stationLevel, onInputChangeDebounced }) => {
+const PanelInput: FunctionComponent<PanelInputProps> = ({ itemReq, stationLevel, onInputChange }) => {
   const [inputValue, setInputValue] = useState(itemReq.current); // State for the input value
+
+  const debounceOnInputChange = debounce((name: string, count: string, id: string) => {
+    onInputChange(name, count, id);
+  }, 500);
 
   // Returns the onInputChangeDebounced to the parent component
   const handleChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       setInputValue(Number(e.target.value));
-      onInputChangeDebounced(itemReq.name, e.target.value, stationLevel.id);
+      // onInputChange(itemReq.name, e.target.value, stationLevel.id);
+      debounceOnInputChange(itemReq.name, e.target.value, stationLevel.id);
     },
-    [itemReq.name, onInputChangeDebounced, stationLevel.id]
+    [itemReq.name, onInputChange, stationLevel.id]
   );
 
   const maxAmountOnClick = () => {
     setInputValue(itemReq.count);
-    onInputChangeDebounced(itemReq.name, itemReq.count.toString(), stationLevel.id);
+    onInputChange(itemReq.name, itemReq.count.toString(), stationLevel.id);
   };
 
   return (

@@ -166,7 +166,7 @@ const HideoutTracker: FunctionComponent = () => {
     });
   };
 
-    /**
+  /**
    * This useEffect retrieves all the current requirements (resources/skills)
    * required to level up your hideout stations if no data exists in the localStorage
    * If it does exist it will use the localstorage data to set the "hideoutStations" state
@@ -227,13 +227,13 @@ const HideoutTracker: FunctionComponent = () => {
             {station.levels.map(
               (stationLevel, index: number) =>
                 stationLevel.isVisible && (
-                    <Panel 
-                      index={index} 
-                      station={station} 
-                      stationLevel={stationLevel} 
-                      onInputChangeDebounced={onInputChangeDebounced} 
-                      setStationLevel={setStationLevel} 
-                    />
+                  <Panel
+                    index={index}
+                    station={station}
+                    stationLevel={stationLevel}
+                    onInputChangeDebounced={onInputChangeDebounced}
+                    setStationLevel={setStationLevel}
+                  />
                 )
             )}
           </>

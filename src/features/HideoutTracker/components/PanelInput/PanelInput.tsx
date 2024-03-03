@@ -34,6 +34,9 @@ const PanelInput: FunctionComponent<PanelInputProps> = ({ itemReq, stationLevel,
     [itemReq.name, onInputChange, stationLevel.id]
   );
 
+  /**
+   * Set the input to the max amount of resources
+   */
   const maxAmountOnClick = () => {
     setInputValue(itemReq.count);
     onInputChange(itemReq.name, itemReq.count.toString(), stationLevel.id);

@@ -4,7 +4,6 @@ import styles from "./HideoutTracker.module.css";
 // Utils & Services
 import { HideoutLoader } from "../services/API";
 import { HideOutStations } from "./../utils/newHideout";
-import { debounce } from "./../utils/debounce";
 import { createHideoutTracker } from "../utils/HideoutTrackerArray";
 
 // Components
@@ -25,7 +24,7 @@ const HideoutTracker: FunctionComponent = () => {
    * when a change has been detected
    * TODO: IDEA > Move the debounce part to the input component. Otherwise I am gonna have to make a new function or if statement most likely
    */
-  const onInputChangeDebounced = debounce((targetKey: string, newValue: string | number, levelId: string) => {
+  const onInputChange = (targetKey: string, newValue: string | number, levelId: string) => {
     setStationLevelId(levelId);
     setHideoutStations((prevData) => {
       if (prevData) {
@@ -64,7 +63,7 @@ const HideoutTracker: FunctionComponent = () => {
 
       return prevData;
     });
-  }, 500);
+  };
 
   /**
    * This function returns the last station (the specific Stationlevel to be exact) that has been modified
@@ -214,7 +213,7 @@ const HideoutTracker: FunctionComponent = () => {
       // setOnInputChangeExecuted reset
       setOnInputChangeExecuted(false);
     }
-  }, [onInputChangeDebounced]);
+  }, [onInputChange]);
 
   return (
     <div className={styles["hideoutTracker-container"]}>
@@ -232,7 +231,7 @@ const HideoutTracker: FunctionComponent = () => {
                     index={index}
                     station={station}
                     stationLevel={stationLevel}
-                    onInputChangeDebounced={onInputChangeDebounced}
+                    onInputChange={onInputChange}
                     setStationLevel={setStationLevel}
                   />
                 )

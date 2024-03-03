@@ -12,6 +12,7 @@ All you need to do now is add your resources for the module you want to upgrade/
 
 > [!NOTE]
 > I have not taken into consideration what module is unlocked based on the current level of the other modules. So they are all available.
+> Should also be noted that skill levels are not taken into consideration as a requirement. Reason is simple you can just upgrade a module if you have collected the required resources and your skill is at the level you need it to be.
 
 ## TO-DO list
 

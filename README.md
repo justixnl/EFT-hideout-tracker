@@ -17,7 +17,7 @@ All you need to do now is add your resources for the module you want to upgrade/
 
 - [ ] Fix Level 1 issue with Stash [^1]
 - [ ] Fix Level 1 issue with Defective wall [^1]
-- [ ] Add Icons for each module (Beter identification)
+- [ ] Add icons for each module (Beter identification)
 - [x] Add button for reset of data (For when new wipes occurs)
   - [ ] Rework functionality
 - [x] Add **max out resources** functionality + button
@@ -25,5 +25,5 @@ All you need to do now is add your resources for the module you want to upgrade/
 - [ ] Check to see where stuff needs to be reworked
   - [ ] Rework if necessary
 
-[^1]: _Currently there is a problem with Stash and Defective Wall not having any requirements. Apparently the Stash has none on level 1 so I need to come up with a solution on skipping the first level. The Defective Wall on the other hand has a different issue as it can be upgraded right away without requirements._
+[^1]: _Currently there is a problem with Stash and Defective Wall not having any requirements. Apparently the Stash has none on level 1 so I need to come up with a solution on skipping the first level. The Defective Wall has the same issue as it can be upgraded right away without any requirements._
 [^2]: Currently clicking to fast on the next max button will not properly trigger the update button.

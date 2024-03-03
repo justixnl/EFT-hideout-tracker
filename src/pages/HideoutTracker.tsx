@@ -23,6 +23,7 @@ const HideoutTracker: FunctionComponent = () => {
   /**
    * A simple function that updates the "hideoutStations" state & localStorage
    * when a change has been detected
+   * TODO: IDEA > Move the debounce part to the input component. Otherwise I am gonna have to make a new function or if statement most likely
    */
   const onInputChangeDebounced = debounce((targetKey: string, newValue: string | number, levelId: string) => {
     setStationLevelId(levelId);

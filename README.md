@@ -18,6 +18,7 @@ All you need to do now is add your resources for the module you want to upgrade/
 
 - Gatekeep each module based on the level of the other modules that are required (for example: Gym shouldnt be unlocked untill Defective Wall is)
 - Completed module button for Stash if you have EOD version?
+- Rework the input system in combination with a "Inventory list" widget which will keep track off all resources and automatically assign them to the correct input (showing the total amount of the specific item)
 
 ## TO-DO list
 

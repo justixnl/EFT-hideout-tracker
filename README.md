@@ -10,9 +10,6 @@ For starters, the app retrieves the necessary knowledge required from the [EFT A
 
 All you need to do now is add your resources for the module you want to upgrade/keep track of. The app will check on each input change if the required resources are met. If they are, the upgrade button becomes available, and after you click it, the next level will appear. Once the last level has been upgraded, the module will disappear from the list.
 
-> [!WARNING]
-> If you decide to use my app and need to reset your data at any point, you will have to clear your localStorage through the developer's tools.
-
 > [!NOTE]
 > I have not taken into consideration what module is unlocked based on the current level of the other modules. So they are all available.
 
@@ -21,11 +18,12 @@ All you need to do now is add your resources for the module you want to upgrade/
 - [ ] Fix Level 1 issue with Stash [^1]
 - [ ] Fix Level 1 issue with Defective wall [^1]
 - [ ] Add Icons for each module (Beter identification)
-- [ ] Add button for reset of data (For when new wipes occurs) [^2]
-- [x] Add **max out resources** functionality + button
+- [x] Add button for reset of data (For when new wipes occurs)
+  - [ ] Rework functionality
+- [x] Add **max out resources** functionality + button [^2]
   - [ ] Not working properly with onInputChangeDebounced. This needs a fix.
 - [ ] Check to see where stuff needs to be reworked
   - [ ] Rework if necessary
 
 [^1]: _Currently there is a problem with Stash and Defective Wall not having any requirements. Apparently the Stash has none on level 1 so I need to come up with a solution on skipping the first level. The Defective Wall on the other hand does have a first level requirement from what I've seen ingame. So I will need to debug what's happening here in the data from the API._
-[^2]: See warning above
+[^2]: Currently clicking to fast on the next max button will not properly trigger the update button.

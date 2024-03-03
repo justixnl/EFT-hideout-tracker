@@ -3,6 +3,7 @@
 My private Hideout Tracker for the game [Escape from Tarkov](https://www.escapefromtarkov.com/).
 
 ## Description
+
 I found some online solutions for tracking which module require specific resources, but they didn't fit my usecase, so I decided to create my own. Its easy to use and simple in design.
 
 For starters, the app retrieves the necessary knowledge required from the [EFT API](https://tarkov.dev/api/) (if there is no data available yet). The data is then saved locally in the localStorage using a new data structure.
@@ -21,9 +22,10 @@ All you need to do now is add your resources for the module you want to upgrade/
 - [ ] Fix Level 1 issue with Defective wall [^1]
 - [ ] Add Icons for each module (Beter identification)
 - [ ] Add button for reset of data (For when new wipes occurs) [^2]
-- [ ] Add **max out resources** functionality + button
+- [x] Add **max out resources** functionality + button
+  - [ ] Not working properly with onInputChangeDebounced
 - [ ] Check to see where stuff needs to be reworked
   - [ ] Rework if necessary
 
-[^1]: *Currently there is a problem with Stash and Defective Wall not having any requirements. Apparently the Stash has none on level 1 so I need to come up with a solution on skipping the first level. The Defective Wall on the other hand does have a first level requirement from what I've seen ingame. So I will need to debug what's happening here in the data from the API.*
+[^1]: _Currently there is a problem with Stash and Defective Wall not having any requirements. Apparently the Stash has none on level 1 so I need to come up with a solution on skipping the first level. The Defective Wall on the other hand does have a first level requirement from what I've seen ingame. So I will need to debug what's happening here in the data from the API._
 [^2]: See warning above

@@ -3,8 +3,11 @@ import styles from "./ResetHideoutButton.module.css";
 
 const ResetHideoutButton: FunctionComponent = () => {
   const resetHideOut = () => {
-    localStorage.clear();
-    window.location.reload(); // TODO: rework this so we clear the HideOutData only
+    if (confirm("Are you sure you want to reset Hideout? This will delete all data including stash!")) {
+      localStorage.removeItem("hideoutData");
+      localStorage.removeItem("stashData");
+      window.location.reload(); // TODO: rework this so we clear the HideOutData only
+    }
   };
 
   return (

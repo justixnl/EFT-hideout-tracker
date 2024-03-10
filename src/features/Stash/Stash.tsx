@@ -50,7 +50,6 @@ const Stash: FunctionComponent<Props> = ({ stashInventory, setStashVisibility })
             placeholder="Search here for a specific item"
             className={styles["stash-container_filter-input"]}
             type="text"
-            style={{ border: "none", borderRadius: "4px", backgroundColor: "#fff" }}
           />
         </div>
         <div

@@ -9,7 +9,6 @@ export type InventoryDataItem = { name: string; amount: number };
 
 export const RootLayout: FunctionComponent = () => {
   const [stashVisibility, setStashVisibility] = useState<boolean>(false);
-
   const loaderData = useLoaderData() as InventoryDataItem[];
 
   return (

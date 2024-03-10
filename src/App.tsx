@@ -3,7 +3,7 @@ import { FunctionComponent } from "react";
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
 
 // Utils
-import { fetchHideoutRequirements, fetchInventoryCatalogue } from "./services/API";
+import { fetchHideoutRequirements } from "./services/API";
 import { createHideoutTracker } from "./utils/HideoutTrackerArray";
 import { createStashTracker } from "./utils/StashTrackerArray";
 
@@ -16,15 +16,14 @@ import { hideoutResources } from "./services/resources";
 const stashLoader = async () => {
   const localStorageData = localStorage.getItem("stashData");
   if (!localStorageData) {
-    // Data doesn't exist in localStorage, retrieve API data
-    // const InventoryCatalogueData = await fetchInventoryCatalogue();
+    // If Data doesn't exist in localStorage, retrieve API data
     const stashInventory = createStashTracker(hideoutResources, categoriesToFilter);
 
     localStorage.setItem("stashData", JSON.stringify(stashInventory));
 
     return stashInventory;
   } else {
-    // Data exists in localStorage, no need to fetch
+    // If Data exists in localStorage, no need to fetch
     const stashInventory = JSON.parse(localStorageData);
 
     return stashInventory;
@@ -35,7 +34,7 @@ const hideoutLoader = async () => {
   const localStorageData = localStorage.getItem("hideoutData");
 
   if (!localStorageData) {
-    // Data doesn't exist in localStorage, retrieve API data
+    // If Data doesn't exist in localStorage, retrieve API data
     const hideOutRequirementData = await fetchHideoutRequirements();
     const hideOutData = createHideoutTracker(hideOutRequirementData.data.hideoutStations);
 
@@ -43,7 +42,7 @@ const hideoutLoader = async () => {
 
     return hideOutData;
   } else {
-    // Data exists in localStorage, no need to fetch
+    // If Data exists in localStorage, no need to fetch
     const hideOutData = JSON.parse(localStorageData);
 
     return hideOutData;

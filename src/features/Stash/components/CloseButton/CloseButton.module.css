@@ -1,0 +1,15 @@
+.close-stash-button {
+  padding: 8px;
+  width: 42px;
+  height: 42px;
+  font-size: 24px;
+  line-height: 24px;
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+}
+
+.close-stash-button:hover {
+  background-color: #928060;
+  cursor: pointer;
+}

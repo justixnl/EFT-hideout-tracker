@@ -3,7 +3,7 @@
   right: 0;
   width: 20vw;
   height: 100vh;
-  padding: 8px;
+  padding: 16px;
   z-index: 1;
   overflow: auto;
   position: fixed !important;
@@ -13,12 +13,41 @@
   box-shadow: 1px 1px 5px black;
 }
 
+.stash-container * h2 {
+  margin: 16px 0;
+}
+
+.stash-container * h3 {
+  margin: 16px 0;
+}
+
+.stash-container_reset-buttons {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: center; */
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.stash-container_increase-btn {
+  border-radius: 4px;
+  background-color: #716853;
+  border: 1px solid #8f8f8f;
+  height: 20px;
+}
+
+.stash-container_increase-btn:not(:disabled):hover {
+  cursor: pointer;
+  background-color: #928060;
+}
+
 .stash-container_input {
   background: #fff;
   border: #928060 solid 1px;
   border-bottom: 1px solid rgb(143, 143, 143);
   border-radius: 4px;
-  width: 50px;
+  width: 100px;
   height: 15px;
   color: #000;
   outline: none;

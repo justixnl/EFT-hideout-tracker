@@ -1,16 +1,11 @@
 import { FunctionComponent } from "react";
-import styles from "./ResetButton.module.css";
+import styles from "./ResetHideoutButton.module.css";
 
-interface Props {}
-
-const PanelFooter: FunctionComponent<Props> = () => {
+const ResetHideoutButton: FunctionComponent = () => {
   const resetHideOut = () => {
     localStorage.clear();
     window.location.reload(); // TODO: rework this so we clear the HideOutData only
   };
-
-  // TODO: REMOVE!
-  console.warn("PanelFooter Rerendered!");
 
   return (
     <button className={styles["reset-button"]} onClick={resetHideOut}>
@@ -19,4 +14,4 @@ const PanelFooter: FunctionComponent<Props> = () => {
   );
 };
 
-export default PanelFooter;
+export default ResetHideoutButton;

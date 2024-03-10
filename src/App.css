@@ -7,7 +7,6 @@ h4 {
 }
 
 .content-container {
-  margin: 0 auto; /* when NOT using side bar */
-  margin: 0 8px; /* when using side bar */
+  margin: 0 auto;
   width: 80vw;
 }

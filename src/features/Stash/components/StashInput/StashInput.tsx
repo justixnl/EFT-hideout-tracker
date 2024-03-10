@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ChangeEvent, FunctionComponent, useCallback, useState } from "react";
+import { ChangeEvent, FunctionComponent, MouseEventHandler, useCallback, useState } from "react";
 import styles from "./StashInput.module.css";
 
 interface Props {
@@ -16,6 +16,18 @@ const StashInput: FunctionComponent<Props> = ({ item }) => {
     setInputValue(Number(e.target.value));
   };
 
+  const addToInput = (amount: number) => {
+    setInputValue((prevValue) => prevValue + amount);
+  };
+
+  const handleAdd5 = () => {
+    addToInput(5);
+  };
+
+  const handleAdd10 = () => {
+    addToInput(10);
+  };
+
   return (
     <div
       style={{
@@ -28,8 +40,12 @@ const StashInput: FunctionComponent<Props> = ({ item }) => {
     >
       <div style={{ width: "150px" }}>{item.name}:</div>
       <div style={{ display: "flex", gap: "8px" }}>
-        <button className={styles["stash-container_increase-btn"]}>+5</button>
-        <button className={styles["stash-container_increase-btn"]}>+10</button>
+        <button onClick={handleAdd5} className={styles["stash-container_increase-btn"]}>
+          +5
+        </button>
+        <button onClick={handleAdd10} className={styles["stash-container_increase-btn"]}>
+          +10
+        </button>
         <input
           type="number"
           value={inputValue}

@@ -1,5 +1,11 @@
 import { InventoryData, InventoryRequiredItem } from "./interfaces";
 
+/**
+ * This will make new list of all categories in the game
+ * @param inputData The data that needs to be filtered
+ * @param categoriesToFilter The list of items to filter
+ * @returns array of objects based on the categoriesToFilter requirements
+ */
 export const filterItemsByCategories = (inputData: InventoryData, categoriesToFilter: string[]) => {
   const filteredItems: InventoryRequiredItem[] = [];
   const existingItemNames = new Set();

@@ -1,4 +1,4 @@
-export const query = `query {
+export const hideOutQuery = `query {
   hideoutStations {
     id,
     name,
@@ -35,5 +35,18 @@ export const query = `query {
         value,
       }
     },
+  }
+}`
+
+export const inventoryResourcesQuery = `query {
+    barters {
+    requiredItems {
+      item {
+        name
+        category {
+          name
+        }
+      }
+    }
   }
 }`

@@ -9,6 +9,9 @@ const PanelFooter: FunctionComponent<Props> = () => {
     window.location.reload(); // TODO: rework this so we clear the HideOutData only
   };
 
+  // TODO: REMOVE!
+  console.warn("PanelFooter Rerendered!");
+
   return (
     <button className={styles["reset-button"]} onClick={resetHideOut}>
       Reset Hideout

@@ -1,0 +1,37 @@
+.stash-container {
+  top: 0;
+  right: 0;
+  width: 20vw;
+  height: 100vh;
+  padding: 8px;
+  z-index: 1;
+  overflow: auto;
+  position: fixed !important;
+  -webkit-animation: slidein 0.5s forwards;
+  animation: slidein 0.5s forwards;
+  background-color: #23231e;
+  box-shadow: 1px 1px 5px black;
+}
+
+.stash-container_input {
+  background: #fff;
+  border: #928060 solid 1px;
+  border-bottom: 1px solid rgb(143, 143, 143);
+  border-radius: 4px;
+  width: 50px;
+  height: 15px;
+  color: #000;
+  outline: none;
+}
+
+@keyframes slidein {
+  0% {
+    right: -300px;
+    opacity: 0;
+  }
+
+  100% {
+    right: 0;
+    opacity: 1;
+  }
+}

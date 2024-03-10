@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FunctionComponent, useEffect, useState } from "react";
 import styles from "./HideoutTracker.module.css";
 
@@ -5,6 +6,9 @@ import styles from "./HideoutTracker.module.css";
 import { HideoutLoader } from "../services/API";
 import { HideOutStations } from "./../utils/newHideout";
 import { createHideoutTracker } from "../utils/HideoutTrackerArray";
+import { categoriesToFilter } from "../utils/constants";
+import { hideoutResources } from "../services/resources";
+import { filterItemsByCategories } from "../utils/filterCategories";
 
 // Components
 import Panel from "../features/HideoutTracker/components/Panel/Panel";
@@ -18,6 +22,8 @@ const HideoutTracker: FunctionComponent = () => {
 
   // Check if data exists in localStorage
   const localStorageData = localStorage.getItem("hideoutTrackerArray");
+
+  filterItemsByCategories(hideoutResources, categoriesToFilter);
 
   /**
    * A simple function that updates the "hideoutStations" state & localStorage
@@ -215,30 +221,32 @@ const HideoutTracker: FunctionComponent = () => {
   }, [onInputChange]);
 
   return (
-    <div className={styles["hideoutTracker-container"]}>
-      {loading && !hideoutStations ? (
-        <p>Loading...</p>
-      ) : (
-        // TODO: Vragen aan Rick of "as HideOutStations[]" een goede oplossing
-        // Want ik ben niet 100% zeker dat dit nooit null is
-        (hideoutStations as HideOutStations[]).map((station) => (
-          <>
-            {station.levels.map(
-              (stationLevel, index: number) =>
-                stationLevel.isVisible && (
-                  <Panel
-                    index={index}
-                    station={station}
-                    stationLevel={stationLevel}
-                    onInputChange={onInputChange}
-                    setStationLevel={setStationLevel}
-                  />
-                )
-            )}
-          </>
-        ))
-      )}
-    </div>
+    <>
+      <div className={styles["hideoutTracker-container"]}>
+        {loading && !hideoutStations ? (
+          <p>Loading...</p>
+        ) : (
+          // TODO: Vragen aan Rick of "as HideOutStations[]" een goede oplossing
+          // Want ik ben niet 100% zeker dat dit nooit null is
+          (hideoutStations as HideOutStations[]).map((station) => (
+            <>
+              {station.levels.map(
+                (stationLevel, index: number) =>
+                  stationLevel.isVisible && (
+                    <Panel
+                      index={index}
+                      station={station}
+                      stationLevel={stationLevel}
+                      onInputChange={onInputChange}
+                      setStationLevel={setStationLevel}
+                    />
+                  )
+              )}
+            </>
+          ))
+        )}
+      </div>
+    </>
   );
 };
 

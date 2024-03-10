@@ -20,6 +20,9 @@ const PanelFooter: FunctionComponent<Props> = ({ station, stationLevel, setStati
     (station.name === "Stash" && stationLevel.level === 1) ||
     (station.name === "Defective Wall" && stationLevel.level <= 3);
 
+  // TODO: REMOVE!
+  console.warn("PanelFooter Rerendered!", station.name);
+
   return (
     <div className={styles["station-panel_footer"]}>
       {conditionalRender ? (

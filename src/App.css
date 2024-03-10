@@ -1,8 +1,13 @@
 /* --- Resets --- */
-h1, h2, h3, h4 {
-    margin: 0;
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
 }
 
 .content-container {
-    margin: 0 8px;
+  margin: 0 auto; /* when NOT using side bar */
+  margin: 0 8px; /* when using side bar */
+  width: 80vw;
 }

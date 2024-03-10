@@ -21,21 +21,26 @@ interface Props {
 const Panel: FunctionComponent<Props> = ({ index, station, stationLevel, onInputChange, setStationLevel }) => {
   return (
     <div
-      key={index + station.id}
+      key={"jhue8652" + station.id + index}
       className={classNames(styles["station-panel"], {
         [styles["station-panel_no-flex"]]: station.levels.length == 1,
       })}
     >
       <PanelHeader station={station} stationLevel={stationLevel} />
 
-      <div className={styles["station-panel_content"]}>
+      <div key={"kgh3123" + station.id + index} className={styles["station-panel_content"]}>
         <h4 style={{ marginBottom: "4px" }}>Item Requires:</h4>
         {stationLevel.itemRequirements.map((itemReq) => (
           <PanelInput itemReq={itemReq} stationLevel={stationLevel} onInputChange={onInputChange} />
         ))}
       </div>
 
-      <PanelFooter station={station} stationLevel={stationLevel} setStationLevel={setStationLevel} />
+      <PanelFooter
+        key={"hgnmq83423" + station.id + index}
+        station={station}
+        stationLevel={stationLevel}
+        setStationLevel={setStationLevel}
+      />
     </div>
   );
 };

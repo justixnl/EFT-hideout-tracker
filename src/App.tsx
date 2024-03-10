@@ -2,16 +2,59 @@ import "./App.css";
 import { FunctionComponent } from "react";
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
 
+// Utils
+import { fetchHideoutRequirements, fetchInventoryCatalogue } from "./services/API";
+import { createHideoutTracker } from "./utils/HideoutTrackerArray";
+import { createStashTracker } from "./utils/StashTrackerArray";
+
 // Components
 import { RootLayout } from "./infrastructure/Layouts/RootLayout";
 import HideoutTracker from "./pages/HideoutTracker";
-import { HideoutLoader } from "./services/API";
+import { categoriesToFilter } from "./utils/constants";
+import { hideoutResources } from "./services/resources";
+
+const stashLoader = async () => {
+  const localStorageData = localStorage.getItem("stashData");
+  if (!localStorageData) {
+    // Data doesn't exist in localStorage, retrieve API data
+    // const InventoryCatalogueData = await fetchInventoryCatalogue();
+    const stashInventory = createStashTracker(hideoutResources, categoriesToFilter);
+
+    localStorage.setItem("stashData", JSON.stringify(stashInventory));
+
+    return stashInventory;
+  } else {
+    // Data exists in localStorage, no need to fetch
+    const stashInventory = JSON.parse(localStorageData);
+
+    return stashInventory;
+  }
+};
+
+const hideoutLoader = async () => {
+  const localStorageData = localStorage.getItem("hideoutData");
+
+  if (!localStorageData) {
+    // Data doesn't exist in localStorage, retrieve API data
+    const hideOutRequirementData = await fetchHideoutRequirements();
+    const hideOutData = createHideoutTracker(hideOutRequirementData.data.hideoutStations);
+
+    localStorage.setItem("hideoutData", JSON.stringify(hideOutData));
+
+    return hideOutData;
+  } else {
+    // Data exists in localStorage, no need to fetch
+    const hideOutData = JSON.parse(localStorageData);
+
+    return hideOutData;
+  }
+};
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<RootLayout />}>
-      <Route index element={<HideoutTracker />} />
-      <Route path="/hideout-tracker" element={<HideoutTracker />} loader={HideoutLoader} />
+    <Route path="/" element={<RootLayout />} loader={stashLoader}>
+      <Route index element={<HideoutTracker />} loader={hideoutLoader} />
+      <Route path="/hideout-tracker" element={<HideoutTracker />} loader={hideoutLoader} />
     </Route>
   )
 );

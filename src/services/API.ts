@@ -1,7 +1,7 @@
-import { hideOutQuery, inventoryResourcesQuery } from "./query";
+import { hideoutRequirementsQuery, inventoryCatalogueQuery } from "./query";
 
 // API call
-export const HideoutLoader = async () => {
+export const fetchHideoutRequirements = async () => {
   const response = await fetch("https://api.tarkov.dev/graphql", {
     method: "POST",
     headers: {
@@ -9,7 +9,7 @@ export const HideoutLoader = async () => {
       Accept: "application/json",
     },
     body: JSON.stringify({
-      query: hideOutQuery,
+      query: hideoutRequirementsQuery,
     }),
   })
     .then((r) => r.json())
@@ -20,7 +20,7 @@ export const HideoutLoader = async () => {
   return response;
 };
 
-export const InventoryResourcesLoader = async () => {
+export const fetchInventoryCatalogue = async () => {
   const response = await fetch("https://api.tarkov.dev/graphql", {
     method: "POST",
     headers: {
@@ -28,13 +28,13 @@ export const InventoryResourcesLoader = async () => {
       Accept: "application/json",
     },
     body: JSON.stringify({
-      query: inventoryResourcesQuery,
+      query: inventoryCatalogueQuery,
     }),
   })
     .then((r) => r.json())
     .then((data) => {
       return data;
-    });
+    });    
 
   return response;
 };

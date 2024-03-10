@@ -21,7 +21,7 @@ const PanelFooter: FunctionComponent<Props> = ({ station, stationLevel, setStati
     (station.name === "Defective Wall" && stationLevel.level <= 3);
 
   // TODO: REMOVE!
-  console.warn("PanelFooter Rerendered!", station.name);
+  // console.warn("PanelFooter Rerendered!", station.name);
 
   return (
     <div className={styles["station-panel_footer"]}>

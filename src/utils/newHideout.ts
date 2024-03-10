@@ -2,19 +2,19 @@
 export interface StationLevelRequirements {
     name: string;
     level: number;
-    current: number | null;
+    amount: number | null;
 }
 
 export interface SkillRequirements {
     name: string;
     level: number;
-    current: number;
+    amount: number;
 }
 
 export interface ItemRequirements {
     name: string;
     count: number;
-    current: number;
+    amount: number;
 }
 
 // Rename to StationLevel? Or Station?

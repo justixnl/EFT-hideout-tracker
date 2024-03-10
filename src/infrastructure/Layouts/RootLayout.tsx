@@ -1,12 +1,16 @@
 import { FunctionComponent, useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLoaderData } from "react-router-dom";
 
 // components
 import NavigationBar from "../NavigationBar/NavigationBar";
 import Stash from "../../features/Stash/Stash";
 
+export type InventoryDataItem = { name: string; amount: number };
+
 export const RootLayout: FunctionComponent = () => {
   const [stashVisibility, setStashVisibility] = useState<boolean>(false);
+
+  const loaderData = useLoaderData() as InventoryDataItem[];
 
   return (
     <div className="root-layout">
@@ -20,7 +24,7 @@ export const RootLayout: FunctionComponent = () => {
           <Outlet />
         </main>
 
-        {stashVisibility ? <Stash setStashVisibility={setStashVisibility} /> : null}
+        {stashVisibility ? <Stash stashInventory={loaderData} setStashVisibility={setStashVisibility} /> : null}
       </div>
     </div>
   );

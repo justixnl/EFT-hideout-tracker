@@ -9,7 +9,7 @@ interface Props {
 
 const PanelHeader: FunctionComponent<Props> = ({ station, stationLevel }) => {
   // TODO: REMOVE!
-  console.warn("PanelHeader Rerendered!");
+  // console.warn("PanelHeader Rerendered!");
 
   return (
     <h3 className={styles["panel-header"]}>

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ChangeEvent, FunctionComponent, MouseEventHandler, useCallback, useState } from "react";
+import { ChangeEvent, FunctionComponent, useState } from "react";
 import styles from "./StashInput.module.css";
 
 interface Props {
@@ -13,6 +13,7 @@ const StashInput: FunctionComponent<Props> = ({ item }) => {
   const [inputValue, setInputValue] = useState(item.amount); // State for the input value
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    // TODO: Need to handle the update for the stash and localstorage here
     setInputValue(Number(e.target.value));
   };
 
@@ -28,6 +29,7 @@ const StashInput: FunctionComponent<Props> = ({ item }) => {
     addToInput(10);
   };
 
+  // TODO: Fix all the CSS here
   return (
     <div
       style={{

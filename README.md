@@ -21,7 +21,12 @@ All you need to do now is add your resources for the module you want to upgrade/
 - Rework the input system in combination with a "Inventory list" widget which will keep track off all resources and automatically assign them to the correct input (showing the total amount of the specific item)
 
 ## TO-DO list
-
+- [ ] Rework Hideout Page / Panel to optimize rendering
+- [ ] "Stash inventory list" widget
+  - [X] Implement design (Sidebar with animation)
+  - [ ] Rework/implement Redux (Add a global state for easier sharing of data between stash inventory and hideout panels)
+  - [ ] Connect Stash inventory Widget with Hideout Page Panels (All resources are automatically assigned to the correct input).
+  - [ ] On upgrade the required amount of resources are reduced from the "global" Stash inventory
 - [x] Fix Level 1 issue with Stash [^1]
 - [x] Fix Level 1 issue with Defective wall [^1]
 - [ ] Add icons for each module (Beter identification)
@@ -29,8 +34,6 @@ All you need to do now is add your resources for the module you want to upgrade/
   - [ ] Rework functionality
 - [x] Add **max out resources** functionality + button
   - [x] Not working properly with onInputChangeDebounced. This needs a fix. [^2]
-- [ ] Check to see where stuff needs to be reworked
-  - [ ] Rework if necessary
 
 [^1]: _Currently there is a problem with Stash and Defective Wall not having any requirements. Apparently the Stash has none on level 1 so I need to come up with a solution on skipping the first level. The Defective Wall has the same issue as it can be upgraded right away without any requirements._
 [^2]: Currently clicking to fast on the next max button will not properly trigger the update button.

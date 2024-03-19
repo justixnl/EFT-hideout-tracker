@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FunctionComponent, useEffect, useState } from "react";
 import styles from "./HideoutTracker.module.css";
 
@@ -64,14 +63,14 @@ const HideoutTracker: FunctionComponent = () => {
 
   /**
    * This function returns the last station (the specific Stationlevel to be exact) that has been modified
-   * @param stationLevelId the station id
+   * @param levelId the station id
    * @returns
    */
-  const getLastModifiedStation = (stationLevelId: string | null) => {
+  const getLastModifiedStation = (levelId: string | null) => {
     if (!hideoutStations) return null; // Ensure hideoutStations is not null or undefined
 
     for (const station of hideoutStations) {
-      const result = station.levels.find((level) => level.id === stationLevelId);
+      const result = station.levels.find((level) => level.id === levelId);
       if (result) {
         return result;
       }
@@ -83,10 +82,10 @@ const HideoutTracker: FunctionComponent = () => {
   /**
    * This runs a check to see if the station (of that specific level) is allowed to
    * upgrade or not
-   * @param stationLevelId The station Level ID
+   * @param levelId The station Level ID
    */
-  const setUnsetStationUpgradable = (stationLevelId: string | null) => {
-    const Levels = getLastModifiedStation(stationLevelId); // prob rename to level or stationLevel
+  const setUnsetStationUpgradable = (levelId: string | null) => {
+    const Levels = getLastModifiedStation(levelId); // prob rename to level or stationLevel
 
     let result = false; // Default value if Levels is null or Levels.itemRequirements doesn't meet conditions
 
@@ -102,7 +101,7 @@ const HideoutTracker: FunctionComponent = () => {
         const newData = prevData.map((station: HideOutStations) => ({
           ...station,
           levels: station.levels.map((level) => {
-            if (level.id === stationLevelId) {
+            if (level.id === levelId) {
               // Match the correct level using the id
               return {
                 ...level,

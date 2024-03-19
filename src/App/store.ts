@@ -1,32 +1,32 @@
 // store.ts
-import { configureStore } from '@reduxjs/toolkit';
-import { createApi } from '@reduxjs/toolkit/query/react';
+import { configureStore } from "@reduxjs/toolkit";
+import { createApi } from "@reduxjs/toolkit/query/react";
 
 const store = configureStore({
- reducer: {},
-   middleware: (getDefaultMiddleware) =>
+  reducer: {},
+  middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       immutableCheck: {
-        ignoredPaths: ['ignoredPath', 'ignoredNested.one', 'ignoredNested.two'],
+        ignoredPaths: ["ignoredPath", "ignoredNested.one", "ignoredNested.two"],
       },
     }),
 });
 
 const api = createApi({
   baseQuery: () => {},
-  endpoints: build => ({
+  endpoints: (build) => ({
     pokemonList: build.query({
       queryFn() {
-        return { data: {name: "Pickachu"}}
-      }
+        return { data: { name: "Pickachu" } };
+      },
     }),
     pokemonDetail: build.query({
       queryFn() {
-        return { data: {name: "Pickachu"}}
-      }
-    })
-  })
-})
+        return { data: { name: "Pickachu" } };
+      },
+    }),
+  }),
+});
 
 const { usePokemonListQuery, usePokemonDetailQuery } = api;
 

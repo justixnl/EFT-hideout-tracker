@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ChangeEvent, FunctionComponent, useState } from "react";
 import styles from "./StashInput.module.css";
 

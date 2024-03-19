@@ -127,19 +127,19 @@ const HideoutTracker: FunctionComponent = () => {
   /**
    * This function will level up the Station. This is done by hidding the previous level and showning the next one
    * In order to do this both the "hideoutStations" state and the localStorage get updated
-   * @param stationLevelId The station Level ID
+   * @param levelId The station Level ID
    */
-  const setStationLevel = (stationLevelId: string) => {
+  const setStationLevel = (levelId: string) => {
     setHideoutStations((prevData) => {
       if (prevData) {
-        const lastChar = stationLevelId.charAt(stationLevelId.length - 1); // Gets the last character of the string
+        const lastChar = levelId.charAt(levelId.length - 1); // Gets the last character of the string
         // add +1 to the last character (which is an index num) and than adds it back to the string
-        const nextStationIndex = stationLevelId.slice(0, -1) + (parseInt(lastChar) + 1).toString();
+        const nextStationIndex = levelId.slice(0, -1) + (parseInt(lastChar) + 1).toString();
 
         const newData = prevData.map((station: HideOutStations) => ({
           ...station,
           levels: station.levels.map((level) => {
-            if (level.id === stationLevelId || level.id === nextStationIndex) {
+            if (level.id === levelId || level.id === nextStationIndex) {
               // Match the correct level using the id
               return {
                 ...level,

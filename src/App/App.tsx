@@ -1,17 +1,19 @@
 import "./App.css";
 import { FunctionComponent } from "react";
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./store"; // Import your Redux store
 
 // Utils
-import { fetchHideoutRequirements } from "./services/API";
-import { createHideoutTracker } from "./utils/HideoutTrackerArray";
-import { createStashTracker } from "./utils/StashTrackerArray";
+import { fetchHideoutRequirements } from "../services/API";
+import { createHideoutTracker } from "../utils/HideoutTrackerArray";
+import { createStashTracker } from "../utils/StashTrackerArray";
 
 // Components
-import { RootLayout } from "./infrastructure/Layouts/RootLayout";
-import HideoutTracker from "./pages/HideoutTracker";
-import { categoriesToFilter } from "./utils/constants";
-import { hideoutResources } from "./services/resources";
+import { RootLayout } from "../infrastructure/Layouts/RootLayout";
+import HideoutTracker from "../pages/HideoutTracker";
+import { categoriesToFilter } from "../utils/constants";
+import { hideoutResources } from "../services/resources";
 
 /**
  * This retrieves either the necessary data from the API
@@ -63,10 +65,12 @@ const hideoutLoader = async () => {
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<RootLayout />} loader={stashLoader}>
-      <Route index element={<HideoutTracker />} loader={hideoutLoader} />
-      <Route path="/hideout-tracker" element={<HideoutTracker />} loader={hideoutLoader} />
-    </Route>
+    <Provider store={store}>
+      <Route path="/" element={<RootLayout />} loader={stashLoader}>
+        <Route index element={<HideoutTracker />} loader={hideoutLoader} />
+        <Route path="/hideout-tracker" element={<HideoutTracker />} loader={hideoutLoader} />
+      </Route>
+    </Provider>
   )
 );
 

@@ -1,0 +1,22 @@
+.stash-container_increase-btn {
+  border-radius: 4px;
+  background-color: #716853;
+  border: 1px solid #8f8f8f;
+  height: 20px;
+}
+
+.stash-container_increase-btn:not(:disabled):hover {
+  cursor: pointer;
+  background-color: #928060;
+}
+
+.stash-container_input {
+  background: #fff;
+  border: #928060 solid 1px;
+  border-bottom: 1px solid rgb(143, 143, 143);
+  border-radius: 4px;
+  width: 50px;
+  height: 15px;
+  color: #000;
+  outline: none;
+}

@@ -10,3 +10,19 @@
   border-bottom: solid 1px #d9d9d9;
   font-family: "BenderBold", sans-serif;
 }
+
+.navigation-menu {
+  margin-right: 8px;
+  width: 42px;
+  height: 42px;
+  font-size: 24px;
+  line-height: 24px;
+  border: none;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.navigation-menu:hover {
+  background-color: #928060;
+  cursor: pointer;
+}

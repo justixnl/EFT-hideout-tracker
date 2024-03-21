@@ -1,0 +1,39 @@
+.stash-container_filter {
+  position: relative;
+}
+
+.stash-container_filter-input {
+  margin: 16px 0;
+}
+
+.stash-container_filter-input {
+  margin-top: 4px;
+  padding: 16px 8px;
+  width: 100%;
+  height: 24px;
+  border: none;
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 600;
+  font-style: italic;
+  border-radius: 20px;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+.clear-filter-button {
+  height: 24px;
+  width: 24px;
+  position: absolute;
+  top: 7px;
+  right: 5px;
+  cursor: pointer;
+  color: #000;
+  border: none;
+  border-radius: 50%;
+  line-height: 24px;
+  background: transparent;
+}
+
+.clear-filter-button:hover {
+  background-color: #c3c2be;
+}

@@ -1,0 +1,25 @@
+.reset-button {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 48px;
+  width: 100%;
+  max-width: 140px;
+
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  background-color: #706752;
+
+  font-family: "Neusa-DemiBold", sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  vertical-align: baseline;
+}
+
+.reset-button:hover {
+  background: #928060;
+}

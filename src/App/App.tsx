@@ -38,31 +38,6 @@ const stashLoader = async () => {
   }
 };
 
-/**
- * This retrieves either the necessary data from the API
- * Formats it and then returns it to the hideout component (widget).
- * Or it gets retrieve the already existing data from the localStorage
- * @returns returns an list of all Stash resources
- */
-const hideoutLoader = async () => {
-  const localStorageData = localStorage.getItem("hideoutData");
-
-  if (!localStorageData) {
-    // If Data doesn't exist in localStorage, retrieve API data
-    const hideOutRequirementData = await fetchHideoutRequirements();
-    const hideOutData = createHideoutTracker(hideOutRequirementData.data.hideoutStations);
-
-    localStorage.setItem("hideoutData", JSON.stringify(hideOutData));
-
-    return hideOutData;
-  } else {
-    // If Data exists in localStorage, no need to fetch
-    const hideOutData = JSON.parse(localStorageData);
-
-    return hideOutData;
-  }
-};
-
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>

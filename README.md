@@ -21,10 +21,11 @@ All you need to do now is add your resources for the module you want to upgrade/
 - Rework the input system in combination with a "Inventory list" widget which will keep track off all resources and automatically assign them to the correct input (showing the total amount of the specific item)
 
 ## TO-DO list
+
 - [ ] Rework Hideout Page / Panel to optimize rendering
 - [ ] "Stash inventory list" widget
-  - [X] Implement design (Sidebar with animation)
-  - [ ] Rework/implement Redux (Add a global state for easier sharing of data between stash inventory and hideout panels)
+  - [x] Implement design (Sidebar with animation)
+  - [x] Rework/implement Redux (Add a global state for easier sharing of data between stash inventory and hideout panels)
   - [ ] Connect Stash inventory Widget with Hideout Page Panels (All resources are automatically assigned to the correct input).
   - [ ] On upgrade the required amount of resources are reduced from the "global" Stash inventory
 - [x] Fix Level 1 issue with Stash [^1]

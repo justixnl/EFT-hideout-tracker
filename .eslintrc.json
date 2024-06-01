@@ -11,7 +11,7 @@
   "plugins": ["react", "jest", "@typescript-eslint", "simple-import-sort", "prettier"],
   "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
   "rules": {
-    "@typescript-eslint/no-unused-vars": ["off"],
+    "@typescript-eslint/no-unused-vars": ["off", { "ignoreRestSiblings": true }],
     "@typescript-eslint/no-use-before-define": ["off"],
     "@typescript-eslint/quotes": ["error", "double"],
     "@typescript-eslint/naming-convention": [

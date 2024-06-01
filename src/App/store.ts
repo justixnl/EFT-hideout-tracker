@@ -1,34 +1,17 @@
-// store.ts
 import { configureStore } from "@reduxjs/toolkit";
-import { createApi } from "@reduxjs/toolkit/query/react";
+import { api } from "../services/API";
 
 const store = configureStore({
-  reducer: {},
+  reducer: {
+    [api.reducerPath]: api.reducer,
+  },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       immutableCheck: {
         ignoredPaths: ["ignoredPath", "ignoredNested.one", "ignoredNested.two"],
       },
-    }),
+    }).concat(api.middleware), // Add RTK Query middleware,
 });
-
-const api = createApi({
-  baseQuery: () => {},
-  endpoints: (build) => ({
-    pokemonList: build.query({
-      queryFn() {
-        return { data: { name: "Pickachu" } };
-      },
-    }),
-    pokemonDetail: build.query({
-      queryFn() {
-        return { data: { name: "Pickachu" } };
-      },
-    }),
-  }),
-});
-
-const { usePokemonListQuery, usePokemonDetailQuery } = api;
 
 /*
 // Infer the `RootState` and `AppDispatch` types from the store itself

@@ -4,6 +4,8 @@ import styles from "./HideoutTracker.module.css";
 // Utils & Services
 import { HideOutStations } from "./../utils/newHideout";
 import { useLoaderData, useNavigation } from "react-router-dom";
+// TEST
+import { useHideoutRequirementsQuery, useInventoryCatalogueQuery } from "../services/API";
 
 // Components
 import Panel from "../features/HideoutTracker/components/Panel/Panel";
@@ -13,8 +15,13 @@ const HideoutTracker: FunctionComponent = () => {
   const [onInputChangeExecuted, setOnInputChangeExecuted] = useState(false);
   const [hideoutStations, setHideoutStations] = useState<HideOutStations[] | null>(null);
 
+  const { data, error, isLoading } = useHideoutRequirementsQuery();
+  // const hideoutData = data;
   const hideoutData = useLoaderData() as HideOutStations[];
   const navigation = useNavigation();
+
+  console.log("hideoutData", hideoutData);
+  console.log("RTK data", data);
 
   /**
    * A simple function that updates the "hideoutStations" state & localStorage
@@ -164,7 +171,7 @@ const HideoutTracker: FunctionComponent = () => {
 
   /**
    * This useEffect retrieves all the current requirements (resources/skills)
-   * required to level up your hideout stations if no data exists in the localStorage
+   * required to level up your hideout stations if no data exists in the localStorage.
    * If it does exist it will use the localstorage data to set the "hideoutStations" state
    */
   useEffect(() => {

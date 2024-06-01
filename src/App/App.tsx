@@ -65,9 +65,9 @@ const hideoutLoader = async () => {
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<RootLayout />} loader={stashLoader}>
-      <Route index element={<HideoutTracker />} loader={hideoutLoader} />
-      <Route path="/hideout-tracker" element={<HideoutTracker />} loader={hideoutLoader} />
+    <Route path="/" element={<RootLayout />}>
+      <Route index element={<HideoutTracker />} />
+      <Route path="/hideout-tracker" element={<HideoutTracker />} />
     </Route>
   )
 );

@@ -1,6 +1,7 @@
 import { hideoutRequirementsQuery, inventoryCatalogueQuery } from "./query";
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { request, gql, ClientError } from "graphql-request";
+import { ApiHideoutRequirements } from "../utils/ApiHideOut";
 
 const graphqlBaseQuery =
   ({ baseUrl }: { baseUrl: string }) =>
@@ -25,7 +26,7 @@ export const api = createApi({
   endpoints: (builder) => ({
     // You have to type the builder.query and in this case we are not passing in any
     // arguments so its void
-    hideoutRequirements: builder.query<void, void>({
+    hideoutRequirements: builder.query<ApiHideoutRequirements, void>({
       query: () => ({
         method: "POST",
         headers: {

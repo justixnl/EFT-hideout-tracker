@@ -3,25 +3,25 @@ import styles from "./HideoutTracker.module.css";
 
 // Utils & Services
 import { HideOutStations } from "./../utils/newHideout";
-import { useLoaderData, useNavigation } from "react-router-dom";
-// TEST
+import { createHideoutTracker } from "./../utils/HideoutTrackerArray";
 import { useHideoutRequirementsQuery, useInventoryCatalogueQuery } from "../services/API";
 
 // Components
 import Panel from "../features/HideoutTracker/components/Panel/Panel";
 
 const HideoutTracker: FunctionComponent = () => {
+  // Introduce loading state
+  const [loading, setLoading] = useState(true);
   const [stationLevelId, setStationLevelId] = useState<string | null>(null);
   const [onInputChangeExecuted, setOnInputChangeExecuted] = useState(false);
   const [hideoutStations, setHideoutStations] = useState<HideOutStations[] | null>(null);
 
-  const { data, error, isLoading } = useHideoutRequirementsQuery();
-  // const hideoutData = data;
-  const hideoutData = useLoaderData() as HideOutStations[];
-  const navigation = useNavigation();
+  // Check if data exists in localStorage
+  const localStorageData: string | null = localStorage.getItem("hideoutTrackerArray");
 
-  console.log("hideoutData", hideoutData);
-  console.log("RTK data", data);
+  const { data: hideoutRequirements, error, isFetching: isHideoutFetching } = useHideoutRequirementsQuery();
+  // const hideoutData = useLoaderData() as HideOutStations[]; // TODO: REMOVE WHEN ABOVE WORKS
+  // const navigation = useNavigation(); // TODO: REMOVE WHEN ^
 
   /**
    * A simple function that updates the "hideoutStations" state & localStorage
@@ -171,14 +171,39 @@ const HideoutTracker: FunctionComponent = () => {
 
   /**
    * This useEffect retrieves all the current requirements (resources/skills)
-   * required to level up your hideout stations if no data exists in the localStorage.
+   * required to level up your hideout stations if no data exists in the localStorage
    * If it does exist it will use the localstorage data to set the "hideoutStations" state
    */
   useEffect(() => {
-    if (hideoutData) {
-      setHideoutStations(hideoutData);
+    if (!localStorageData && hideoutRequirements && !isHideoutFetching) {
+      console.log("hideoutRequirements", hideoutRequirements);
+
+      // Data doesn't exist in localStorage and API data is available
+      const fetchHideoutData = async () => {
+        const hideoutTrackerArray = createHideoutTracker(hideoutRequirements.hideoutStations);
+
+        // Set hideoutStations in the component state
+        setHideoutStations(hideoutTrackerArray);
+
+        // Save the filled data in localStorage
+        localStorage.setItem("hideoutTrackerArray", JSON.stringify(hideoutTrackerArray));
+
+        setLoading(false);
+      };
+
+      fetchHideoutData();
+    } else if (localStorageData) {
+      // Data exists in localStorage
+      const hideoutTrackerArray = JSON.parse(localStorageData);
+
+      setHideoutStations(hideoutTrackerArray);
+
+      setLoading(false);
+    } else if (isHideoutFetching) {
+      // Data is being fetched
+      setLoading(true);
     }
-  }, [hideoutData]);
+  }, [localStorageData, hideoutRequirements, isHideoutFetching]);
 
   /**
    * If a change on a input has been detected run setUnsetStationUpgradable
@@ -199,7 +224,7 @@ const HideoutTracker: FunctionComponent = () => {
   return (
     <>
       <div className={styles["hideoutTracker-container"]}>
-        {navigation.state !== "loading" && !hideoutStations ? (
+        {loading ? (
           <p>Loading...</p>
         ) : (
           // TODO: Vragen aan Rick of "as HideOutStations[]" een goede oplossing

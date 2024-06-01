@@ -1,16 +1,20 @@
-// Components
-import HideoutTracker from "../pages/HideoutTracker";
-import { MenuItem, RouteItem } from "./interfaces";
-
-// ROUTES
-export const routes = {
-  home: "/",
-}
-// ROUTES - MenuItems
-export const MENU_ITEMS: MenuItem[] = [
-    { label: "Home", path: routes.home },
-]
-// ROUTES - Each individual Route
-export const ROUTE_ITEMS: RouteItem[] = [
-    { path: routes.home , component: HideoutTracker },
-]
+// CATEGORY RESOURCES - Categories to filter
+export const categoriesToFilter = [
+  "Building material",
+  "Tool",
+  "Jewelry",
+  "Household goods",
+  "Drink",
+  "Other",
+  "Electronics",
+  "Lubricant",
+  "Food",
+  "Info",
+  "Battery",
+  "Medical supplies",
+  "Locking container",
+  "Fuel",
+  "Common container",
+  "Drug",
+  "Medical item",
+];

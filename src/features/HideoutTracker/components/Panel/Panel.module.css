@@ -1,22 +1,21 @@
 .station-panel {
-    flex: 1;
-    background-color: #2d2922;
-    box-shadow: 0 0 100px #413d34, 0 0 3px rgba(232,190,107,.8);
-    color: #cdccc8;
-    border-radius: 4px;
-    padding: 16px;
-    margin: 8px;
-    min-width: 20%;
-    max-width: 25%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  flex: 1;
+  background-color: #2d2922;
+  box-shadow: 0 0 100px #413d34, 0 0 3px rgba(232, 190, 107, 0.8);
+  color: #cdccc8;
+  border-radius: 4px;
+  padding: 16px;
+  margin: 8px;
+  min-width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .station-panel_content {
-    margin: 16px 0;
+  margin: 16px 0;
 }
 
 .station-panel_no-flex {
-    flex: none;
+  flex: none;
 }

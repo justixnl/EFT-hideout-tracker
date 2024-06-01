@@ -1,30 +1,30 @@
 .station-panel_footer {
-    display: flex;
-    justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 }
 
 /* 
     TODO: I might need to make this a separate component in the future
 */
 .button-upgrade {
-    background-color: rgb(112, 99, 75);
-    border: #928060 solid 1px;
-    width: fit-content;
-    padding: 8px;
-    color: #fff;
-    border-radius: 8px;
+  background-color: rgb(112, 99, 75);
+  border: #928060 solid 1px;
+  width: fit-content;
+  padding: 8px;
+  color: #fff;
+  border-radius: 8px;
 }
 
 .button-upgrade:disabled {
-    background-color: rgba(128, 128, 128, 0.2);
-    border: #928060 solid 1px;
-    width: fit-content;
-    padding: 8px;
-    color: #fff;
-    border-radius: 8px;
+  background-color: rgba(128, 128, 128, 0.2);
+  border: #928060 solid 1px;
+  width: fit-content;
+  padding: 8px;
+  color: #fff;
+  border-radius: 8px;
 }
 
 .button-upgrade:not(:disabled):hover {
-    cursor: pointer;
-    background-color: #928060;
+  cursor: pointer;
+  background-color: #928060;
 }

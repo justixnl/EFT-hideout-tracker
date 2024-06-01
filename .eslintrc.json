@@ -1,0 +1,35 @@
+{
+  "env": {
+    "browser": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "ecmaVersion": 2021,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "jest", "@typescript-eslint", "simple-import-sort", "prettier"],
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  "rules": {
+    "@typescript-eslint/no-unused-vars": ["off", { "ignoreRestSiblings": true }],
+    "@typescript-eslint/no-use-before-define": ["off"],
+    "@typescript-eslint/quotes": ["error", "double"],
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "format": ["camelCase", "UPPER_CASE", "snake_case", "PascalCase"],
+        "leadingUnderscore": "allow",
+        "selector": "parameter"
+      }
+    ],
+    "react/static-property-placement": ["off"],
+    "react/prop-types": ["off"],
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": ["error"]
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
+  }
+}

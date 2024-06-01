@@ -11,28 +11,28 @@ export const createHideoutTracker = (hideoutStations: ApiHideOutStation[]) => {
       isVisible: index === 0 ? true : false,
       upgradable: false, // For checkmark
       stationLevelRequirements: Array.isArray(stationLevelRequirements)
-        ? stationLevelRequirements.map(({ station, level }) => ({
+        ? stationLevelRequirements.map(({ station, level: stationReqLevel }) => ({
             name: station.name,
-            level,
-            current: null, // Add the new 'current' property and set it to null to reflect it should be empty
+            level: stationReqLevel,
+            amount: null, // Add the new 'amount' property and set it to null to reflect it should be empty
           }))
         : [],
       skillRequirements: Array.isArray(skillRequirements)
-        ? skillRequirements.map(({ name, level }) => ({
-            name,
-            level,
-            current: 0, // Add the new 'current' property and set it to 0
+        ? skillRequirements.map(({ name: skillName, level: skillLevel }) => ({
+            name: skillName,
+            level: skillLevel,
+            amount: 0, // Add the new 'amount' property and set it to 0
           }))
         : [],
       itemRequirements: Array.isArray(itemRequirements)
         ? itemRequirements.map(({ item, count }) => ({
             name: item.name,
             count,
-            current: 0, // Add the new 'current' property and set it to 0
+            amount: 0, // Add the new 'amount' property and set it to 0
           }))
         : [],
     })),
   }));
 
   return newArray;
-}
+};

@@ -2,9 +2,9 @@ import { FunctionComponent, useEffect, useState } from "react";
 import styles from "./HideoutTracker.module.css";
 
 // Utils & Services
-import { HideoutLoader } from "../services/API";
 import { HideOutStations } from "./../utils/newHideout";
-import { createHideoutTracker } from "../utils/HideoutTrackerArray";
+import { createHideoutTracker } from "./../utils/HideoutTrackerArray";
+import { useHideoutRequirementsQuery, useInventoryCatalogueQuery } from "../services/API";
 
 // Components
 import Panel from "../features/HideoutTracker/components/Panel/Panel";
@@ -17,7 +17,11 @@ const HideoutTracker: FunctionComponent = () => {
   const [hideoutStations, setHideoutStations] = useState<HideOutStations[] | null>(null);
 
   // Check if data exists in localStorage
-  const localStorageData = localStorage.getItem("hideoutTrackerArray");
+  const localStorageData: string | null = localStorage.getItem("hideoutTrackerArray");
+
+  const { data: hideoutRequirements, error, isFetching: isHideoutFetching } = useHideoutRequirementsQuery();
+  // const hideoutData = useLoaderData() as HideOutStations[]; // TODO: REMOVE WHEN ABOVE WORKS
+  // const navigation = useNavigation(); // TODO: REMOVE WHEN ^
 
   /**
    * A simple function that updates the "hideoutStations" state & localStorage
@@ -38,7 +42,7 @@ const HideoutTracker: FunctionComponent = () => {
                   if (itemReq.name === targetKey) {
                     return {
                       ...itemReq,
-                      current: typeof newValue === "string" ? parseInt(newValue, 10) : newValue,
+                      amount: typeof newValue === "string" ? parseInt(newValue, 10) : newValue,
                     };
                   }
                   return itemReq;
@@ -51,7 +55,7 @@ const HideoutTracker: FunctionComponent = () => {
 
         // Updates the localStorage with the new values by insterting a new Array
         // With the updated value
-        localStorage.setItem("hideoutTrackerArray", JSON.stringify(newData));
+        localStorage.setItem("hideoutData", JSON.stringify(newData));
 
         // setOnInputChange has been executed
         setOnInputChangeExecuted(true);
@@ -66,14 +70,14 @@ const HideoutTracker: FunctionComponent = () => {
 
   /**
    * This function returns the last station (the specific Stationlevel to be exact) that has been modified
-   * @param stationLevelId the station id
+   * @param levelId the station id
    * @returns
    */
-  const getLastModifiedStation = (stationLevelId: string | null) => {
+  const getLastModifiedStation = (levelId: string | null) => {
     if (!hideoutStations) return null; // Ensure hideoutStations is not null or undefined
 
     for (const station of hideoutStations) {
-      const result = station.levels.find((level) => level.id === stationLevelId);
+      const result = station.levels.find((level) => level.id === levelId);
       if (result) {
         return result;
       }
@@ -85,16 +89,16 @@ const HideoutTracker: FunctionComponent = () => {
   /**
    * This runs a check to see if the station (of that specific level) is allowed to
    * upgrade or not
-   * @param stationLevelId The station Level ID
+   * @param levelId The station Level ID
    */
-  const setUnsetStationUpgradable = (stationLevelId: string | null) => {
-    const Levels = getLastModifiedStation(stationLevelId); // prob rename to level or stationLevel
+  const setUnsetStationUpgradable = (levelId: string | null) => {
+    const Levels = getLastModifiedStation(levelId); // prob rename to level or stationLevel
 
     let result = false; // Default value if Levels is null or Levels.itemRequirements doesn't meet conditions
 
     if (Levels) {
       // Check if Levels.itemRequirements meets conditions
-      result = Levels.itemRequirements.every((req) => req.count === req.current);
+      result = Levels.itemRequirements.every((req) => req.count === req.amount);
     } else {
       console.error("Something went wrong!"); // Log an error if Levels is null
     }
@@ -104,7 +108,7 @@ const HideoutTracker: FunctionComponent = () => {
         const newData = prevData.map((station: HideOutStations) => ({
           ...station,
           levels: station.levels.map((level) => {
-            if (level.id === stationLevelId) {
+            if (level.id === levelId) {
               // Match the correct level using the id
               return {
                 ...level,
@@ -117,7 +121,7 @@ const HideoutTracker: FunctionComponent = () => {
 
         // Updates the localStorage with the new values by insterting a new Array
         // With the updated value
-        localStorage.setItem("hideoutTrackerArray", JSON.stringify(newData));
+        localStorage.setItem("hideoutData", JSON.stringify(newData));
 
         // The newData (array) for the hideoutStations state
         return newData;
@@ -130,19 +134,19 @@ const HideoutTracker: FunctionComponent = () => {
   /**
    * This function will level up the Station. This is done by hidding the previous level and showning the next one
    * In order to do this both the "hideoutStations" state and the localStorage get updated
-   * @param stationLevelId The station Level ID
+   * @param levelId The station Level ID
    */
-  const setStationLevel = (stationLevelId: string) => {
+  const setStationLevel = (levelId: string) => {
     setHideoutStations((prevData) => {
       if (prevData) {
-        const lastChar = stationLevelId.charAt(stationLevelId.length - 1); // Gets the last character of the string
+        const lastChar = levelId.charAt(levelId.length - 1); // Gets the last character of the string
         // add +1 to the last character (which is an index num) and than adds it back to the string
-        const nextStationIndex = stationLevelId.slice(0, -1) + (parseInt(lastChar) + 1).toString();
+        const nextStationIndex = levelId.slice(0, -1) + (parseInt(lastChar) + 1).toString();
 
         const newData = prevData.map((station: HideOutStations) => ({
           ...station,
           levels: station.levels.map((level) => {
-            if (level.id === stationLevelId || level.id === nextStationIndex) {
+            if (level.id === levelId || level.id === nextStationIndex) {
               // Match the correct level using the id
               return {
                 ...level,
@@ -155,7 +159,7 @@ const HideoutTracker: FunctionComponent = () => {
 
         // Updates the localStorage with the new values by insterting a new Array
         // With the updated value
-        localStorage.setItem("hideoutTrackerArray", JSON.stringify(newData));
+        localStorage.setItem("hideoutData", JSON.stringify(newData));
 
         // The newData (array) for the hideoutStations state
         return newData;
@@ -171,11 +175,12 @@ const HideoutTracker: FunctionComponent = () => {
    * If it does exist it will use the localstorage data to set the "hideoutStations" state
    */
   useEffect(() => {
-    if (!localStorageData) {
-      // Data doesn't exist in localStorage, retrieve API data
+    if (!localStorageData && hideoutRequirements && !isHideoutFetching) {
+      console.log("hideoutRequirements", hideoutRequirements);
+
+      // Data doesn't exist in localStorage and API data is available
       const fetchHideoutData = async () => {
-        const hideoutData = await HideoutLoader();
-        const hideoutTrackerArray = createHideoutTracker(hideoutData.data.hideoutStations);
+        const hideoutTrackerArray = createHideoutTracker(hideoutRequirements.hideoutStations);
 
         // Set hideoutStations in the component state
         setHideoutStations(hideoutTrackerArray);
@@ -187,16 +192,18 @@ const HideoutTracker: FunctionComponent = () => {
       };
 
       fetchHideoutData();
-    } else {
-      // Data exists in localStorage, no need to fetch
-      // Set loading to false
+    } else if (localStorageData) {
+      // Data exists in localStorage
       const hideoutTrackerArray = JSON.parse(localStorageData);
 
       setHideoutStations(hideoutTrackerArray);
 
       setLoading(false);
+    } else if (isHideoutFetching) {
+      // Data is being fetched
+      setLoading(true);
     }
-  }, [localStorageData]);
+  }, [localStorageData, hideoutRequirements, isHideoutFetching]);
 
   /**
    * If a change on a input has been detected run setUnsetStationUpgradable
@@ -215,30 +222,32 @@ const HideoutTracker: FunctionComponent = () => {
   }, [onInputChange]);
 
   return (
-    <div className={styles["hideoutTracker-container"]}>
-      {loading && !hideoutStations ? (
-        <p>Loading...</p>
-      ) : (
-        // TODO: Vragen aan Rick of "as HideOutStations[]" een goede oplossing
-        // Want ik ben niet 100% zeker dat dit nooit null is
-        (hideoutStations as HideOutStations[]).map((station) => (
-          <>
-            {station.levels.map(
-              (stationLevel, index: number) =>
-                stationLevel.isVisible && (
-                  <Panel
-                    index={index}
-                    station={station}
-                    stationLevel={stationLevel}
-                    onInputChange={onInputChange}
-                    setStationLevel={setStationLevel}
-                  />
-                )
-            )}
-          </>
-        ))
-      )}
-    </div>
+    <>
+      <div className={styles["hideoutTracker-container"]}>
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          // TODO: Vragen aan Rick of "as HideOutStations[]" een goede oplossing
+          // Want ik ben niet 100% zeker dat dit nooit null is
+          (hideoutStations as HideOutStations[]).map((station) => (
+            <>
+              {station.levels.map(
+                (stationLevel, index: number) =>
+                  stationLevel.isVisible && (
+                    <Panel
+                      index={index}
+                      station={station}
+                      stationLevel={stationLevel}
+                      onInputChange={onInputChange}
+                      setStationLevel={setStationLevel}
+                    />
+                  )
+              )}
+            </>
+          ))
+        )}
+      </div>
+    </>
   );
 };
 

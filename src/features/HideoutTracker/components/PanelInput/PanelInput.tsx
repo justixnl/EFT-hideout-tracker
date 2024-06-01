@@ -18,7 +18,7 @@ interface PanelInputProps {
  * @returns
  */
 const PanelInput: FunctionComponent<PanelInputProps> = ({ itemReq, stationLevel, onInputChange }) => {
-  const [inputValue, setInputValue] = useState(itemReq.current); // State for the input value
+  const [inputValue, setInputValue] = useState(itemReq.amount); // State for the input value
 
   const debounceOnInputChange = debounce((name: string, count: string, id: string) => {
     onInputChange(name, count, id);
@@ -41,6 +41,9 @@ const PanelInput: FunctionComponent<PanelInputProps> = ({ itemReq, stationLevel,
     setInputValue(itemReq.count);
     onInputChange(itemReq.name, itemReq.count.toString(), stationLevel.id);
   };
+
+  // TODO: REMOVE!
+  // console.warn("PanelInput Rerendered!");
 
   return (
     <div className={styles["panel-input-container"]}>

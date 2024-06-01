@@ -16,12 +16,15 @@ const graphqlBaseQuery =
     }
   };
 
+// RTK Query Api calls
 export const api = createApi({
-  reducerPath: "api",
+  reducerPath: "api", // This is the api.reducer value for in the App/store.ts file
   baseQuery: graphqlBaseQuery({
     baseUrl: "https://api.tarkov.dev/graphql",
   }),
   endpoints: (builder) => ({
+    // You have to type the builder.query and in this case we are not passing in any
+    // arguments so its void
     hideoutRequirements: builder.query<void, void>({
       query: () => ({
         method: "POST",
@@ -53,6 +56,7 @@ export const api = createApi({
 export const { useHideoutRequirementsQuery, useInventoryCatalogueQuery } = api;
 
 // API call
+// TODO: REMOVE EVERYTHING BELOW ONCE THE ABOVE IS PROPERLY WORKING
 export const fetchHideoutRequirements = async () => {
   const response = await fetch("https://api.tarkov.dev/graphql", {
     method: "POST",

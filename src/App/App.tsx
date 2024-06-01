@@ -65,15 +65,17 @@ const hideoutLoader = async () => {
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Provider store={store}>
-      <Route path="/" element={<RootLayout />} loader={stashLoader}>
-        <Route index element={<HideoutTracker />} loader={hideoutLoader} />
-        <Route path="/hideout-tracker" element={<HideoutTracker />} loader={hideoutLoader} />
-      </Route>
-    </Provider>
+    <Route path="/" element={<RootLayout />} loader={stashLoader}>
+      <Route index element={<HideoutTracker />} loader={hideoutLoader} />
+      <Route path="/hideout-tracker" element={<HideoutTracker />} loader={hideoutLoader} />
+    </Route>
   )
 );
 
-const App: FunctionComponent = () => <RouterProvider router={router} />;
+const App: FunctionComponent = () => (
+  <Provider store={store}>
+    <RouterProvider router={router} />
+  </Provider>
+);
 
 export default App;

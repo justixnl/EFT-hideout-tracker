@@ -208,7 +208,7 @@ const HideoutTracker: FunctionComponent = () => {
   /**
    * If a change on a input has been detected run setUnsetStationUpgradable
    *
-   * NOTE: Maybe rework this? I can just excute "setUnsetStationUpgradable"
+   * NOTE: Maybe rework this? I can just execute "setUnsetStationUpgradable"
    * during the onInputChangeDebounced. HOWEVER! Doing that will make the
    * function unpure
    */

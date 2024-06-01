@@ -9,7 +9,6 @@ export type InventoryDataItem = { name: string; amount: number };
 
 export const RootLayout: FunctionComponent = () => {
   const [stashVisibility, setStashVisibility] = useState<boolean>(false);
-  const loaderData = useLoaderData() as InventoryDataItem[];
 
   return (
     <div className="root-layout">
@@ -23,7 +22,7 @@ export const RootLayout: FunctionComponent = () => {
           <Outlet />
         </main>
 
-        {stashVisibility ? <Stash stashInventory={loaderData} setStashVisibility={setStashVisibility} /> : null}
+        {stashVisibility ? <Stash setStashVisibility={setStashVisibility} /> : null}
       </div>
     </div>
   );

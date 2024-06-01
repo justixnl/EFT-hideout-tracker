@@ -1,9 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */ /* TODO: REMOVE THIS ONCE INTERFACE IS FINISH */
 import { ChangeEvent, FunctionComponent, useEffect, useState } from "react";
 import styles from "./Stash.module.css";
 
-// Utils
+// Utils & Services
 import classNames from "classnames";
 import { InventoryDataItem } from "../../infrastructure/Layouts/RootLayout";
+import { createStashTracker } from "../../utils/StashTrackerArray";
+import { categoriesToFilter } from "../../utils/constants";
+import { hideoutResources } from "../../services/resources";
 
 // Components
 import CloseButton from "./components/CloseButton/CloseButton";
@@ -14,13 +18,13 @@ import FilterInput from "./components/FilterInput/FilterInput";
 
 interface Props {
   setStashVisibility: (isVisible: boolean) => void;
-  stashInventory: InventoryDataItem[];
 }
 
-const Stash: FunctionComponent<Props> = ({ stashInventory, setStashVisibility }) => {
+const Stash: FunctionComponent<Props> = ({ setStashVisibility }) => {
   const [closeAnimation, setCloseAnimation] = useState<boolean>(false);
   const [filterValue, setFilterValue] = useState<string>("");
   const [filteredItems, setFilteredItems] = useState<InventoryDataItem[]>([]);
+  const [stashInventory, setStashInventory] = useState<any>([]);
 
   /**
    * This function allows for a slideOut animation to take place
@@ -69,10 +73,31 @@ const Stash: FunctionComponent<Props> = ({ stashInventory, setStashVisibility })
     setFilteredItems(filterStashItems(emptyString));
   };
 
-  // UseEffect to display the filtered list on the initial render
   useEffect(() => {
-    setFilteredItems(filterStashItems(""));
+    const localStorageData = localStorage.getItem("stashData");
+
+    console.log("stashInventory.length", stashInventory.length);
+    console.log("localStorageData", localStorageData);
+
+    if (!localStorageData) {
+      // If Data doesn't exist in localStorage, retrieve API data
+      const StashData = createStashTracker(hideoutResources, categoriesToFilter);
+      setStashInventory(StashData);
+      localStorage.setItem("stashData", JSON.stringify(StashData));
+
+      console.log("if");
+    } else {
+      // If Data exists in localStorage, no need to fetch
+      setStashInventory(JSON.parse(localStorageData));
+
+      console.log("else");
+    }
   }, []);
+
+  // UseEffect to display the filtered list
+  useEffect(() => {
+    setFilteredItems(filterStashItems(filterValue));
+  }, [stashInventory]);
 
   return (
     <aside

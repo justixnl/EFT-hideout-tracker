@@ -5,15 +5,13 @@ import { Provider } from "react-redux";
 import store from "./store"; // Import your Redux store
 
 // Utils
-import { fetchHideoutRequirements } from "../services/API";
-import { createHideoutTracker } from "../utils/HideoutTrackerArray";
 import { createStashTracker } from "../utils/StashTrackerArray";
+import { categoriesToFilter } from "../utils/constants";
+import { hideoutResources } from "../services/resources";
 
 // Components
 import { RootLayout } from "../infrastructure/Layouts/RootLayout";
 import HideoutTracker from "../pages/HideoutTracker";
-import { categoriesToFilter } from "../utils/constants";
-import { hideoutResources } from "../services/resources";
 
 /**
  * This retrieves either the necessary data from the API

@@ -42,9 +42,6 @@ const PanelInput: FunctionComponent<PanelInputProps> = ({ itemReq, stationLevel,
     onInputChange(itemReq.name, itemReq.count.toString(), stationLevel.id);
   };
 
-  // TODO: REMOVE!
-  // console.warn("PanelInput Rerendered!");
-
   return (
     <div className={styles["panel-input-container"]}>
       <div className={styles["panel-input_name"]} style={{ display: "inline-block" }}>
